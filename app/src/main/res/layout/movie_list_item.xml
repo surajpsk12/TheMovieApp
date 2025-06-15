@@ -19,11 +19,13 @@
             android:id="@+id/cvMovie"
             android:layout_margin="5dp"
             android:elevation="3dp"
-            app:cardCornerRadius="1dp">
+            app:cardCornerRadius="1dp"
+            android:background="@color/white">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
                 <ImageView
                     android:id="@+id/ivMovie"
@@ -35,6 +37,7 @@
 
                 <TextView
                     android:id="@+id/tvTitle"
+                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ivMovie"
@@ -53,6 +56,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@{Double.toString(movie.voteAverage)}"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
