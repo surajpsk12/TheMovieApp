@@ -1,11 +1,19 @@
 package com.surajvanshsv.themovieapp.model;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
+
 import java.util.List;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.surajvanshsv.themovieapp.BR;
 
-public class Movie {
+public class Movie extends BaseObservable {
 
     @SerializedName("adult")
     @Expose
@@ -34,6 +42,16 @@ public class Movie {
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
+    @BindingAdapter({"posterPath"})
+    public static void loadImage(ImageView imageView,String imageUrl){
+        // Badic URL : https://image.tmdb.org/t/p/w500/
+        String imagePath = "https://image.tmdb.org/t/p/w500/"+imageUrl;
+
+        Glide.with(imageView.getContext())
+                .load(imagePath)
+                .into(imageView);
+    }
+
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
@@ -129,13 +147,14 @@ public class Movie {
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
-
+    @Bindable
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+        notifyPropertyChanged(BR.title);
     }
 
     public Boolean getVideo() {
@@ -145,13 +164,14 @@ public class Movie {
     public void setVideo(Boolean video) {
         this.video = video;
     }
-
+    @Bindable
     public Double getVoteAverage() {
         return voteAverage;
     }
 
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+        notifyPropertyChanged(BR.voteAverage);
     }
 
     public Integer getVoteCount() {
